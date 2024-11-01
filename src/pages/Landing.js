@@ -1,8 +1,8 @@
 import React from "react"
-import Wrapper from "./assets/wrappers/LandingPage"
-import { Logo } from "./components"
+import Wrapper from "../assets/wrappers/LandingPage"
+import { Logo } from "../components"
 
-import main from "./assets/images/main.svg"
+import main from "../assets/images/main.svg"
 
 const Landing = () => {
   return (

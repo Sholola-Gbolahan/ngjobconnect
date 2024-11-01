@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import Landing from "./Landing"
+import Landing from "./pages/Landing"
 const App = () => {
   return (
     <>
