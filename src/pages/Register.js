@@ -16,12 +16,18 @@ const Register = () => {
   // redux toolkit and useNavigate later
 
   const handleChange = (e) => {
-    console.log(e.target)
+    const name = e.target.name
+    const value = e.target.value
+    console.log(`${name}: ${value}`)
+    setValues({ ...values, [name]: value })
   }
 
   const onSubmit = (e) => {
     e.preventDefault()
-    console.log(e.target)
+    const { email, password, name, isMember } = values
+    if (!email || !password || (!isMember && !name)) {
+      console.log("Please fill out all entries")
+    }
   }
 
   const toggleMember = () => {
@@ -54,9 +60,8 @@ const Register = () => {
         />
         {/* Password field */}
         <FormRow
-          label="password"
           name="password"
-          type="email"
+          type="password"
           value={values.password}
           handleChange={handleChange}
         />
