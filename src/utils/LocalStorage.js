@@ -1,4 +1,4 @@
-export const addUsertoLocalStorage = (user) => {
+export const addUserToLocalStorage = (user) => {
   localStorage.setItem("user", JSON.stringify(user))
 }
 

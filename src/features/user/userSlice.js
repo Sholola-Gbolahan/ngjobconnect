@@ -1,9 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import customFetch from "../../utils/axios"
 import { toast } from "react-toastify"
+import {
+  addUserToLocalStorage,
+  getUserFromLocalStorage,
+} from "../../utils/LocalStorage"
 
 const initialState = {
-  user: null,
+  user: getUserFromLocalStorage(),
   isLoading: false,
 }
 
@@ -46,6 +50,7 @@ const userSlice = createSlice({
         const { user } = payload
         state.isLoading = false
         state.user = user
+        addUserToLocalStorage(user)
         toast.success(`Hello there ${user.name}`)
       })
 
@@ -66,6 +71,7 @@ const userSlice = createSlice({
         const { user } = payload
         state.isLoading = false
         state.user = user
+        addUserToLocalStorage(user)
         toast.success(`Welcome Back ${user.name}`)
       })
 
