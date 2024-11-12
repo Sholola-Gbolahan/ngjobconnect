@@ -5,6 +5,7 @@ import Wrapper from "../assets/wrappers/RegisterPage"
 import { toast } from "react-toastify"
 import { useSelector, useDispatch } from "react-redux"
 import { registerUser, LoginUser } from "../features/user/userSlice"
+import { useNavigate } from "react-router-dom"
 
 const initialState = {
   name: "",
@@ -14,10 +15,19 @@ const initialState = {
 }
 
 const Register = () => {
+  const navigate = useNavigate()
+
+  const [values, setValues] = useState(initialState)
   const dispatch = useDispatch()
   const { isLoading, user } = useSelector((store) => store.user)
 
-  const [values, setValues] = useState(initialState)
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        navigate("/")
+      }, 3000)
+    }
+  }, [user, navigate])
 
   // redux toolkit and useNavigate later
 
