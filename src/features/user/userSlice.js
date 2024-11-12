@@ -22,7 +22,12 @@ export const registerUser = createAsyncThunk(
 export const LoginUser = createAsyncThunk(
   "user/loginUser",
   async (user, thunkAPI) => {
-    console.log(`Login User ${JSON.stringify(user)}`)
+    try {
+      const resp = await customFetch.post("/auth/login", user)
+      return resp.data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.msg)
+    }
   }
 )
 
@@ -31,11 +36,12 @@ const userSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
+      //-------------------// Register Builder //--------------------------
       // PENDING STATE
       .addCase(registerUser.pending, (state) => {
         state.isLoading = true
       })
-      //FULFILED STATE
+      //FULFILLED STATE
       .addCase(registerUser.fulfilled, (state, { payload }) => {
         const { user } = payload
         state.isLoading = false
@@ -45,6 +51,26 @@ const userSlice = createSlice({
 
       // REJECTED STATE
       .addCase(registerUser.rejected, (state, { payload }) => {
+        state.isLoading = false
+        toast.error(payload)
+      })
+
+      //-------------------// Login Builder //--------------------------
+      //PENDING
+      .addCase(LoginUser.pending, (state) => {
+        state.isLoading = true
+      })
+
+      //FULFILLED
+      .addCase(LoginUser.fulfilled, (state, { payload }) => {
+        const { user } = payload
+        state.isLoading = false
+        state.user = user
+        toast.success(`Welcome Back ${user.name}`)
+      })
+
+      //REJECTED
+      .addCase(LoginUser.rejected, (state, { payload }) => {
         state.isLoading = false
         toast.error(payload)
       })
