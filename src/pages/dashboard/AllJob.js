@@ -1,7 +1,7 @@
 import React from "react"
 
-const AllJob = () => {
+const AllJobs = () => {
   return <div>AllJob</div>
 }
 
-export default AllJob
+export default AllJobs
