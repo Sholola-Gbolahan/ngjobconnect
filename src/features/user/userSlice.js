@@ -6,6 +6,7 @@ import {
   getUserFromLocalStorage,
   removeUserFromLocalStorage,
 } from "../../utils/LocalStorage"
+import { Navigate } from "react-router-dom"
 
 const initialState = {
   user: getUserFromLocalStorage(),
@@ -49,6 +50,7 @@ const userSlice = createSlice({
       state.user = null
       state.isSidebarOpen = false
       removeUserFromLocalStorage()
+      toast.success("Account Logged Out")
     },
     toggleSidebar: (state) => {
       state.isSidebarOpen = !state.isSidebarOpen
