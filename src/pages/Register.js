@@ -88,7 +88,7 @@ const Register = () => {
           handleChange={handleChange}
         />
         <button type="submit" className="btn btn-block" disable={isLoading}>
-          submit
+          {isLoading ? "Loading....." : "Submit"}
         </button>
         <p>
           {values.isMember ? "Not a Member yet?" : "Already a Member?"}
