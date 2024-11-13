@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 const Wrapper = styled.nav`
   height: var(--nav-height);
@@ -39,6 +39,7 @@ const Wrapper = styled.nav`
     box-shadow: var(--shadow-2);
   }
 
+  /* dropdown styling */
   .dropdown {
     position: absolute;
     top: 40px;
@@ -51,6 +52,7 @@ const Wrapper = styled.nav`
     visibility: hidden;
     border-radius: var(--borderRadius);
   }
+  /* Show dropdown styling */
   .show-dropdown {
     visibility: visible;
   }
