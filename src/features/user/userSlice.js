@@ -6,7 +6,6 @@ import {
   getUserFromLocalStorage,
   removeUserFromLocalStorage,
 } from "../../utils/LocalStorage"
-import { Navigate } from "react-router-dom"
 
 const initialState = {
   user: getUserFromLocalStorage(),
