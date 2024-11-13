@@ -4,7 +4,7 @@ import { FormRow, Logo } from "../components"
 import Wrapper from "../assets/wrappers/RegisterPage"
 import { toast } from "react-toastify"
 import { useSelector, useDispatch } from "react-redux"
-import { registerUser, LoginUser } from "../features/user/userSlice"
+import { registerUser, loginUser } from "../features/user/userSlice"
 import { useNavigate } from "react-router-dom"
 
 const initialState = {
@@ -45,7 +45,7 @@ const Register = () => {
     }
 
     if (isMember) {
-      dispatch(LoginUser({ email, password }))
+      dispatch(loginUser({ email, password }))
       return
     }
 

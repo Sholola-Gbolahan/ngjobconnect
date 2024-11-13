@@ -9,6 +9,7 @@ import {
 const initialState = {
   user: getUserFromLocalStorage(),
   isLoading: false,
+  isSidebarOpen: false,
 }
 
 export const registerUser = createAsyncThunk(
@@ -18,19 +19,23 @@ export const registerUser = createAsyncThunk(
       const resp = await customFetch.post("/auth/register", user)
       return resp.data
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data.msg)
+      return thunkAPI.rejectWithValue(
+        error?.response?.data?.msg || "Registration failed"
+      )
     }
   }
 )
 
-export const LoginUser = createAsyncThunk(
+export const loginUser = createAsyncThunk(
   "user/loginUser",
   async (user, thunkAPI) => {
     try {
       const resp = await customFetch.post("/auth/login", user)
       return resp.data
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data.msg)
+      return thunkAPI.rejectWithValue(
+        error?.response?.data?.msg || "Login failed"
+      )
     }
   }
 )
@@ -38,6 +43,12 @@ export const LoginUser = createAsyncThunk(
 const userSlice = createSlice({
   name: "user",
   initialState,
+  reducers: {
+    toggleSidebar: (state) => {
+      state.isSidebarOpen = !state.isSidebarOpen
+    },
+  },
+
   extraReducers: (builder) => {
     builder
       //-------------------// Register Builder //--------------------------
@@ -62,12 +73,12 @@ const userSlice = createSlice({
 
       //-------------------// Login Builder //--------------------------
       //PENDING
-      .addCase(LoginUser.pending, (state) => {
+      .addCase(loginUser.pending, (state) => {
         state.isLoading = true
       })
 
       //FULFILLED
-      .addCase(LoginUser.fulfilled, (state, { payload }) => {
+      .addCase(loginUser.fulfilled, (state, { payload }) => {
         const { user } = payload
         state.isLoading = false
         state.user = user
@@ -76,11 +87,13 @@ const userSlice = createSlice({
       })
 
       //REJECTED
-      .addCase(LoginUser.rejected, (state, { payload }) => {
+      .addCase(loginUser.rejected, (state, { payload }) => {
         state.isLoading = false
         toast.error(payload)
       })
   },
 })
+
+export const { toggleSidebar } = userSlice.actions
 
 export default userSlice.reducer
