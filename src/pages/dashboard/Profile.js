@@ -14,7 +14,7 @@ const Profile = () => {
   const [userData, setUserData] = useState({
     name: user?.name || "",
     email: user?.email || "",
-    lastName: user?.lastName || "",
+    lastName: user?.lastname || "",
     location: user?.location || "",
   })
 
