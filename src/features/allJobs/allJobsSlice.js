@@ -39,7 +39,7 @@ export const showStats = createAsyncThunk (
     try{
 
       const resp = customFetch.get('/jobs/stats')
-      console.log(resp.data);
+      console.log("Stats Data",resp.data);
       return resp.data
     } catch(error) {
       thunkAPI.rejectWithValue(error.response.data.msg || 'Error fetching Stats')
