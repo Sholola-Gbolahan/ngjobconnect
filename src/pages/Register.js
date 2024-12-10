@@ -87,9 +87,26 @@ const Register = () => {
           value={values.password}
           handleChange={handleChange}
         />
+        {/* Main Submit Button */}
         <button type="submit" className="btn btn-block" disable={isLoading}>
           {isLoading ? "Loading....." : "Submit"}
         </button>
+
+        {/* Test User Button */}
+        <button
+          type="button"
+          className="btn btn-block btn-hipster"
+          disabled={isLoading}
+          onClick={() => {
+            dispatch(
+              loginUser({ email: "testUser@test.com", password: "secret" })
+            )
+          }}
+        >
+          {isLoading ? "loading..." : "demo"}
+        </button>
+
+        {/* Toggle registration or Login Button */}
         <p>
           {values.isMember ? "Not a Member yet?" : "Already a Member?"}
           <button className="member-btn" onClick={toggleMember} type="button">
