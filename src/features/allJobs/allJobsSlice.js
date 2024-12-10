@@ -34,11 +34,10 @@ export const getAllJobs = createAsyncThunk(
   }
 )
 
-export const showStats = createAsyncThunk (
+export const showStats = createAsyncThunk ('allJobs/showStats',
   async(_,thunkAPI) => {
     try{
-
-      const resp = customFetch.get('/jobs/stats')
+      const resp = await customFetch.get('/jobs/stats')
       console.log("Stats Data",resp.data);
       return resp.data
     } catch(error) {

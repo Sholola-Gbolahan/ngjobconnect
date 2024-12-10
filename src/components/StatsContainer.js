@@ -29,11 +29,13 @@ const StatsContainer = () => {
       bcg: "#ffeeee",
     },
   ]
-  return     (<Wrapper>
-  {defaultStats.map((item, index) => {
-    return <StatItem key={index} {...item} />
-  })}
-</Wrapper>)
+  return (
+    <Wrapper>
+      {defaultStats.map((item, index) => {
+        return <StatItem key={index} {...item} />
+      })}
+    </Wrapper>
+  )
 }
 
 export default StatsContainer
