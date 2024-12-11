@@ -8,7 +8,7 @@ import ChartsContainer from "./ChartsContainer"
 import StatsContainer from "./StatsContainer"
 import Loading from "./Loading"
 import StatItem from "./StatItem"
-import AreaChart from "./AreaChart"
+import AreaChart from "./AreaChartComponent"
 import BarChart from "./BarChart"
 
 export {
