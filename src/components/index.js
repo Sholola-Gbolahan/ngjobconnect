@@ -8,6 +8,8 @@ import ChartsContainer from "./ChartsContainer"
 import StatsContainer from "./StatsContainer"
 import Loading from "./Loading"
 import StatItem from "./StatItem"
+import AreaChart from "./AreaChart"
+import BarChart from "./BarChart"
 
 export {
   Logo,
@@ -20,4 +22,6 @@ export {
   FormRowSelect,
   ChartsContainer,
   StatsContainer,
+  AreaChart,
+  BarChart,
 }
