@@ -10,6 +10,7 @@ import Loading from "./Loading"
 import StatItem from "./StatItem"
 import AreaChart from "./AreaChartComponent"
 import BarChart from "./BarChart"
+import PageBtnContainer from "./PageBtnContainer"
 
 export {
   Logo,
@@ -24,4 +25,5 @@ export {
   StatsContainer,
   AreaChart,
   BarChart,
+  PageBtnContainer,
 }

@@ -34,18 +34,20 @@ export const getAllJobs = createAsyncThunk(
   }
 )
 
-export const showStats = createAsyncThunk ('allJobs/showStats',
-  async(_,thunkAPI) => {
-    try{
-      const resp = await customFetch.get('/jobs/stats')
-      console.log("Stats Data",resp.data);
+export const showStats = createAsyncThunk(
+  "allJobs/showStats",
+  async (_, thunkAPI) => {
+    try {
+      const resp = await customFetch.get("/jobs/stats")
+      console.log("Stats Data", resp.data)
       return resp.data
-    } catch(error) {
-      thunkAPI.rejectWithValue(error.response.data.msg || 'Error fetching Stats')
+    } catch (error) {
+      thunkAPI.rejectWithValue(
+        error.response.data.msg || "Error fetching Stats"
+      )
     }
   }
 )
-
 
 const allJobsSlice = createSlice({
   name: "allJobs",
@@ -60,10 +62,10 @@ const allJobsSlice = createSlice({
 
     handleChange: (state, { payload: { name, value } }) => {
       // state.page = 1;
-      state[name] = value;
+      state[name] = value
     },
     clearFilters: (state) => {
-      return { ...state, ...initialFiltersState };
+      return { ...state, ...initialFiltersState }
     },
   },
 
@@ -77,28 +79,31 @@ const allJobsSlice = createSlice({
       .addCase(getAllJobs.fulfilled, (state, { payload }) => {
         state.isLoading = false
         state.jobs = payload.jobs
+        state.numOfPages = payload.numOfPages
+        state.totalJobs = payload.totalJobs
       })
       .addCase(getAllJobs.rejected, (state, payload) => {
         state.isLoading = false
         toast.error(payload)
       })
 
-        // SHOW STATS
-        .addCase(showStats.pending, (state) => {
-          state.isLoading = true
-        })
-        .addCase(showStats.fulfilled, (state, { payload }) => {
-          state.isLoading = false
-          state.stats = payload.defaultStats
-          state.monthlyApplications = payload.monthlyApplications 
-        })
-        .addCase(showStats.rejected, (state, {payload}) => {
-          state.isLoading = false
-          toast.error(payload)
-        })
+      // SHOW STATS
+      .addCase(showStats.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(showStats.fulfilled, (state, { payload }) => {
+        state.isLoading = false
+        state.stats = payload.defaultStats
+        state.monthlyApplications = payload.monthlyApplications
+      })
+      .addCase(showStats.rejected, (state, { payload }) => {
+        state.isLoading = false
+        toast.error(payload)
+      })
   },
 })
 
-export const { showLoading, hideLoading,handleChange,clearFilters } = allJobsSlice.actions
+export const { showLoading, hideLoading, handleChange, clearFilters } =
+  allJobsSlice.actions
 
 export default allJobsSlice.reducer
