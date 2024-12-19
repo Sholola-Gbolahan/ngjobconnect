@@ -2,10 +2,8 @@ import StatItem from "./StatItem"
 import { FaSuitcaseRolling, FaCalendarCheck, FaBug } from "react-icons/fa"
 import Wrapper from "../assets/wrappers/StatsContainer"
 import { useSelector } from "react-redux"
-
 const StatsContainer = () => {
   const { stats } = useSelector((store) => store.allJobs)
-
   const defaultStats = [
     {
       title: "pending applications",
@@ -29,10 +27,10 @@ const StatsContainer = () => {
       bcg: "#ffeeee",
     },
   ]
+
   return (
     <Wrapper>
       {defaultStats.map((item, index) => {
-
         return <StatItem key={index} {...item} />
       })}
     </Wrapper>

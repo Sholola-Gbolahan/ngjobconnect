@@ -1,9 +1,8 @@
 import React from "react"
 import { FaTimes } from "react-icons/fa"
-import { NavLink } from "react-router-dom"
 import Logo from "./Logo"
 import { useSelector, useDispatch } from "react-redux"
-import links from "../utils/links"
+
 
 import { toggleSidebar } from "../features/user/userSlice"
 
