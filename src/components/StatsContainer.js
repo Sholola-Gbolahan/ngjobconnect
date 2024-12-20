@@ -11,7 +11,7 @@ const StatsContainer = () => {
       icon: <FaSuitcaseRolling />,
       color: "#e9b949",
       bcg: "#fcefc7",
-    },
+    }, 
     {
       title: "interviews scheduled",
       count: stats.interview || 0,
